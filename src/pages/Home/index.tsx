@@ -1,4 +1,4 @@
-import { Play } from 'phosphor-react'
+import { Play, HandPalm } from 'phosphor-react'
 import { 
   HomeContainer, 
   FormContainer,
@@ -6,7 +6,8 @@ import {
   SeperatorCountdown,
   StartCountdownButton,
   TaskInput,
-  MinutesAmountInput
+  MinutesAmountInput,
+  StopCountdownButton
 } from './styles'
 
 import { useForm } from 'react-hook-form'
@@ -135,11 +136,18 @@ export default function Home() {
           <span>{seconds[1]}</span>
         </CountdownContainer>
 
-        <StartCountdownButton disabled={isSubmitDisabled} type="submit">
-          <Play />
-          Começar
+        {activeCycle ? (
+          <StopCountdownButton type="submit">
+            <HandPalm size={24}/>
+            Interromper
+        </StopCountdownButton>
+        ): (
+          <StartCountdownButton disabled={isSubmitDisabled} type="submit">
+            <Play size={24} />
+            Começar
            
         </StartCountdownButton>
+        )}
       </form>
     </HomeContainer>
   )
